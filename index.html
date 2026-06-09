@@ -8,16 +8,11 @@
     <title>IoT Produkte & Hardware im Test | Die besten Internet of Things Deals</title>
     <meta name="description" content="Finde die besten IoT-Komponenten, Smart Home Geräte & Entwickler-Kits im Vergleich. IOT Produktreview, aktuelle Lösungen für dein IoT-Projekt!">
     <meta name="keywords" content="IoT Produkte, Internet of Things kaufen, IoT Hardware Test, Smart Home Komponenten, Arduino kaufen, Raspberry Pi Vergleich, IoT Sensoren, beste IoT Gadgets">
-
     <meta name="author" content="Dein Name oder Website">
     <meta name="robots" content="index, follow">
     <meta name="language" content="de">
     <meta name="revisit-after" content="7 days">
-
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-     <link rel="canonical" href="https://iotlernen.de/">    
-
+    <link rel="canonical" href="https://iotlernen.de/">    
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <style>
@@ -46,8 +41,10 @@
         }
         .logo { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--iot-blue); text-decoration: none; }
         .logo span { color: var(--iot-green); background: var(--dark); padding: 2px 6px; border-radius: 4px; margin-left: 2px; }
-        .nav-links a { margin-left: 20px; text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
-        .nav-links a:hover { color: var(--iot-blue); }
+        
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; transition: var(--transition); cursor: pointer; }
+        .nav-links a:hover, .nav-links a.active { color: var(--iot-blue); }
 
         /* HERO SECTION */
         .hero {
@@ -146,7 +143,6 @@
             transition: var(--transition);
             opacity: 0.9;
         }
-
         .scroll-btn:hover { transform: scale(1.1); opacity: 1; background: var(--dark); }
         
         #btnUp { opacity: 0; visibility: hidden; }
@@ -157,7 +153,9 @@
         .footer-nav a { color: #94a3b8; text-decoration: none; margin: 0 10px; font-size: 0.85rem; transition: var(--transition); }
         .footer-nav a:hover { color: white; }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; text-align: center; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
             .grid { grid-template-columns: 1fr; }
             .scroll-nav { bottom: 20px; right: 20px; }
         }
@@ -166,9 +164,12 @@
 <body id="top">
 
     <header>
-        <a href="#top" class="logo">IOT<span>PRO</span></a>
+        <a href="#top" class="logo" onclick="filterCategory('all')">IOT<span>PRO</span></a>
         <nav class="nav-links">
-            <a href="#kurs">Blog</a>
+            <a class="category-filter active" onclick="filterCategory('all')">Alle</a>
+            <a class="category-filter" onclick="filterCategory('smart-home')">Smart Home</a>
+            <a class="category-filter" onclick="filterCategory('smart-gadgets')">Smart Gadgets</a>
+            <a class="category-filter" onclick="filterCategory('theorie')">Theorie</a>
         </nav>
     </header>
 
@@ -188,34 +189,32 @@
         </div>
 
         <div class="grid" id="lessonGrid">
-    <a href="lesson1/index.html" class="card" data-bg="lesson1/Icon.png">
-        <div class="card-image"><span class="card-tag">Einführung</span></div>
-        <div class="card-content">
-            <h3>Lektion 1: Intro to IoT</h3>
-            <p>Ein Mix aus Hardware, Embedded Systemen & Cloud Computing.</p>
-        </div>
-        <div class="card-footer">Starten <span>→</span></div>
-    </a>
+            <a href="lesson1/index.html" class="card" data-bg="lesson1/Icon.png" data-category="smart-home">
+                <div class="card-image"><span class="card-tag">Smart Home</span></div>
+                <div class="card-content">
+                    <h3>Lektion 1: Intro to IoT</h3>
+                    <p>Ein Mix aus Hardware, Embedded Systemen & Cloud Computing.</p>
+                </div>
+                <div class="card-footer">Starten <span>→</span></div>
+            </a>
 
-    <a href="lesson2/index.html" class="card" data-bg="lesson2/Icon.png">
-        <div class="card-image"><span class="card-tag">Theorie</span></div>
-        <div class="card-content">
-            <h3>Lektion 2: IoT vs. Klassische IT</h3>
-            <p>Warum Edge-Geräte Daten filtern, bevor sie in die Cloud wandern.</p>
-        </div>
-        <div class="card-footer">Starten <span>→</span></div>
-    </a>
+            <a href="lesson2/index.html" class="card" data-bg="lesson2/Icon.png" data-category="theorie">
+                <div class="card-image"><span class="card-tag">Theorie</span></div>
+                <div class="card-content">
+                    <h3>Lektion 2: IoT vs. Klassische IT</h3>
+                    <p>Warum Edge-Geräte Daten filtern, bevor sie in die Cloud wandern.</p>
+                </div>
+                <div class="card-footer">Starten <span>→</span></div>
+            </a>
 
-    <a href="lesson3/index.html" class="card" data-bg="lesson3/Icon.png">
-        <div class="card-image"><span class="card-tag">Sensorik</span></div>
-        <div class="card-content">
-            <h3>Lektion 3: Sounds & Sensors</h3>
-            <p>So misst IoT die Welt! Analoge und digitale Sensoren meistern.</p>
-        </div>
-        <div class="card-footer">Starten <span>→</span></div>
-    </a>
-
-  
+            <a href="lesson3/index.html" class="card" data-bg="lesson3/Icon.png" data-category="smart-gadgets">
+                <div class="card-image"><span class="card-tag">Smart Gadgets</span></div>
+                <div class="card-content">
+                    <h3>Lektion 3: Sounds & Sensors</h3>
+                    <p>So misst IoT die Welt! Analoge und digitale Sensoren meistern.</p>
+                </div>
+                <div class="card-footer">Starten <span>→</span></div>
+            </a>
         </div>
     </section>
 
@@ -231,6 +230,9 @@
     </footer>
 
     <script>
+        // Aktuelle aktive Kategorie global speichern
+        let currentCategory = 'all';
+
         // 1. Hintergrundbilder setzen
         document.querySelectorAll('.card').forEach(card => {
             const bgUrl = card.getAttribute('data-bg');
@@ -239,14 +241,46 @@
             }
         });
 
-        // 2. Suche
-        document.getElementById('courseSearch').addEventListener('keyup', function() {
-            let filter = this.value.toLowerCase();
+        // 2. Kombinierte Filter- und Suchfunktion
+        function applyFilters() {
+            const searchFilter = document.getElementById('courseSearch').value.toLowerCase();
+            
             document.querySelectorAll('#lessonGrid .card').forEach(card => {
-                let text = card.innerText.toLowerCase();
-                card.style.display = text.includes(filter) ? "" : "none";
+                const cardCategory = card.getAttribute('data-category');
+                const cardText = card.innerText.toLowerCase();
+                
+                // Prüfen ob Kategorie UND Suchbegriff übereinstimmen
+                const matchesCategory = (currentCategory === 'all' || cardCategory === currentCategory);
+                const matchesSearch = cardText.includes(searchFilter);
+                
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
             });
-        });
+        }
+
+        // Klick-Event für Kategorien
+        function filterCategory(category) {
+            currentCategory = category;
+            
+            // Aktiven Zustand in der Navigation umschalten
+            document.querySelectorAll('.category-filter').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Den passenden Link (falls geklickt) als aktiv markieren
+            const clickedLink = Array.from(document.querySelectorAll('.category-filter')).find(link => 
+                link.getAttribute('onclick').includes(`'${category}'`)
+            );
+            if (clickedLink) clickedLink.classList.add('active');
+            
+            applyFilters();
+        }
+
+        // Live-Suche Event-Listener
+        document.getElementById('courseSearch').addEventListener('keyup', applyFilters);
 
         // 3. Scroll Button Logik
         const btnUp = document.getElementById('btnUp');
